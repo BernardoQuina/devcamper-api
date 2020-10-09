@@ -20,6 +20,7 @@ const courses = require('./routes/courses');
 const auth = require('./routes/auth');
 const users = require('./routes/users');
 const reviews = require('./routes/reviews');
+const mongoSanitize = require('express-mongo-sanitize');
 
 
 const app = express();
@@ -37,6 +38,9 @@ if(process.env.NODE_ENV === 'development'){
 
 // File uploading
 app.use(fileupload());
+
+// Sanitize data
+app.use(mongoSanitize());
 
 // Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
